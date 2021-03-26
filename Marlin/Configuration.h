@@ -649,7 +649,7 @@
 // extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
 #define USE_XMIN_PLUG
 #define USE_YMIN_PLUG
-#define USE_ZMIN_PLUG
+//#define USE_ZMIN_PLUG
 //#define USE_XMAX_PLUG
 //#define USE_YMAX_PLUG
 //#define USE_ZMAX_PLUG
@@ -768,9 +768,10 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
+//calculated using 256 steps
 #define DEFAULT_AXIS_STEPS_PER_UNIT \
   {                                 \
-    1280, 1280, 6400, 6544                \
+    1280, 1280, 22588, 6544                \
   }
 
 /**
@@ -780,7 +781,7 @@
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    500, 500, 50, 25          \
+    500, 500, 100, 50          \
   }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -799,7 +800,7 @@
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    3000, 3000, 200, 10000       \
+    500, 500, 100, 5000      \
   }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
@@ -818,9 +819,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION 3000         // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION 3000 // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION 3000  // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_ACCELERATION 500         // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION 500 // E acceleration for retracts
+#define DEFAULT_TRAVEL_ACCELERATION 500  // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -888,7 +889,9 @@
  */
 //#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
-// Force the use of the probe for Z-axis homing/#define USE_PROBE_FOR_Z_HOMING
+// Force the use of the probe for Z-axis homing
+
+#define USE_PROBE_FOR_Z_HOMING
 
 /**
  * Z_MIN_PROBE_PIN
@@ -1032,7 +1035,7 @@
  */
 #define NOZZLE_TO_PROBE_OFFSET \
   {                            \
-    55, -20, 0                  \
+    55, -20, -3.6                  \
   }
 
 // Most probes should stay away from the edges of the bed, but
@@ -1040,7 +1043,7 @@
 #define PROBING_MARGIN 10
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_SPEED (133 * 60)
+#define XY_PROBE_SPEED (100 * 60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
@@ -1194,7 +1197,7 @@
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
 #define MIN_SOFTWARE_ENDSTOP_X
 #define MIN_SOFTWARE_ENDSTOP_Y
-//#define MIN_SOFTWARE_ENDSTOP_Z
+#define MIN_SOFTWARE_ENDSTOP_Z
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
@@ -1216,7 +1219,7 @@
  * RAMPS-based boards use SERVO3_PIN for the first runout sensor.
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
  */
-//#define FILAMENT_RUNOUT_SENSOR
+#define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
 #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
 #define NUM_RUNOUT_SENSORS 1            // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
@@ -1573,7 +1576,7 @@
  *    P1  Raise the nozzle always to Z-park height.
  *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS.
  */
-//#define NOZZLE_PARK_FEATURE
+#define NOZZLE_PARK_FEATURE
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
 // Specify a park position as { X, Y, Z_raise }
@@ -1583,7 +1586,7 @@
   }
 //#define NOZZLE_PARK_X_ONLY          // X move only is required to park
 //#define NOZZLE_PARK_Y_ONLY          // Y move only is required to park
-#define NOZZLE_PARK_Z_RAISE_MIN 2   // (mm) Always raise Z by at least this distance
+#define NOZZLE_PARK_Z_RAISE_MIN 3   // (mm) Always raise Z by at least this distance
 #define NOZZLE_PARK_XY_FEEDRATE 100 // (mm/s) X and Y axes feedrate (also used for delta Z axis)
 #define NOZZLE_PARK_Z_FEEDRATE 5    // (mm/s) Z axis feedrate (not used for delta printers)
 #endif
@@ -1867,7 +1870,7 @@
 //
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
-//#define INDIVIDUAL_AXIS_HOMING_MENU
+#define INDIVIDUAL_AXIS_HOMING_MENU
 
 //
 // SPEAKER/BUZZER
@@ -2048,7 +2051,7 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 //
 // ReprapWorld Graphical LCD
